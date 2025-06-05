@@ -9,7 +9,7 @@ app.get("/agent-server", sse.init);
 
 // Puedes emitir datos con: sse.send("Mensaje", "nombreEvento");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`✅ Agent server listening on port ${PORT}`);
 });
