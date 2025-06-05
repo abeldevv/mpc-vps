@@ -1,12 +1,20 @@
+# Usa una imagen oficial de Node.js
 FROM node:18
 
+# Establece el directorio de trabajo
 WORKDIR /app
 
-RUN npm install -g mcp-server
+# Copia los archivos de dependencias
+COPY package*.json ./
 
-# Esta es la forma correcta de definir variables de entorno en Docker
-ENV DEEPSEEK_API_KEY=sk-7218b20911f742128d61f27fc097fcfb
+# Instala dependencias
+RUN npm install
 
-EXPOSE 3000
+# Copia el resto de archivos
+COPY . .
 
-CMD ["mcp-server"]
+# Expone el puerto que usa Railway (por defecto 8080)
+EXPOSE 8080
+
+# Comando para arrancar la app
+CMD ["npm", "start"]
